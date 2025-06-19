@@ -24,8 +24,24 @@ app.use(express.urlencoded({extended: true}))//for using postman
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:process.env.CORS_ORIGIN || "http://localhost:3000",
-		credentials:true,
+		origin: function(origin, callback) {
+			// Allow requests with no origin (like mobile apps, curl requests)
+			if(!origin) return callback(null, true);
+			
+			const allowedOrigins = [
+				process.env.CORS_ORIGIN,
+				"http://localhost:3000",
+				"https://studynotion-an-online-education-platform.vercel.app",
+				"https://pratik0112-studynotion.vercel.app"
+			];
+			
+			if(allowedOrigins.indexOf(origin) !== -1 || !origin) {
+				callback(null, true);
+			} else {
+				callback(new Error('Not allowed by CORS'));
+			}
+		},
+		credentials: true
 	})
 )
 
