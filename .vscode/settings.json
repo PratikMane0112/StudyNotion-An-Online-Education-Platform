@@ -1,5 +1,17 @@
 {
     "python.analysis.extraPaths": [
         "./src/pages/import "
-    ]
+    ],
+    "powermode.presets": "flames",
+    "powermode.enabled": true,
+    "powermode.combo.timerEnabled": "hide",
+    "powermode.shake.enabled": false,
+    "powermode.explosions.enabled": true,
+    "powermode.combo.location": "default",
+    "powermode.combo.counterEnabled": "hide",
+    "powermode.explosions.duration": 1000,
+    "powermode.explosions.frequency": 1,
+    "powermode.combo.counterSize": 1,
+    "powermode.combo.timeout": 10,
+    "powermode.explosions.size": 6
 }

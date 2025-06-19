@@ -75,7 +75,7 @@ exports.deleteAccount = async (req, res) => {
     for (const courseId of user.courses) {
       await Course.findByIdAndUpdate(
         courseId,
-        { $pull: { studentsEnroled: id } },
+        { $pull: { studentsEnrolled: id } },
         { new: true }
       )
     }
@@ -214,7 +214,8 @@ exports.instructorDashboard = async (req, res) => {
     const courseDetails = await Course.find({ instructor: req.user.id })
 
     const courseData = courseDetails.map((course) => {
-      const totalStudentsEnrolled = course.studentsEnroled.length
+      // Fix the field name and add null check
+      const totalStudentsEnrolled = course.studentsEnrolled ? course.studentsEnrolled.length : 0
       const totalAmountGenerated = totalStudentsEnrolled * course.price
 
       // Create a new object with the additional fields

@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+ 
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 const paymentRoutes = require("./routes/Payments");
@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: true}))//for using postman
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"http://localhost:3000",
+		origin:process.env.CORS_ORIGIN || "http://localhost:3000",
 		credentials:true,
 	})
 )
